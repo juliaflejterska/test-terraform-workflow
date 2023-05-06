@@ -9,22 +9,22 @@ jobs:
   terraform:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
+      - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Set up Terraform
+      - name: Set up
         uses: hashicorp/setup-terraform@v1
         with:
           terraform_version: '1.0.2'
 
-      - name: Initialize Terraform
+      - name: Initialize
         run: terraform init
 
-      - name: Validate Terraform configuration
+      - name: Validate configuration
         run: terraform validate
 
-      - name: Plan Terraform changes
+      - name: Plan changes
         run: terraform plan
 
-      - name: Apply Terraform changes
+      - name: Apply changes
         run: terraform apply --auto-approve
