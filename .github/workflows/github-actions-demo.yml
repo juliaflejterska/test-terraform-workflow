@@ -24,9 +24,9 @@ jobs:
         run: terraform validate
 
       - name: Plan changes
-        run: terraform plan
+        run: terraform plan -var "name=Julia"
 
       - name: Apply changes
-        run: terraform apply --auto-approve
+        run: terraform apply -var "name=Julia" --auto-approve
         env:
           TF_IN_AUTOMATION: "true"
