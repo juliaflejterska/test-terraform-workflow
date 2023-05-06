@@ -4,27 +4,27 @@ on:
   push:
     branches:
       - main
-  pull_request:
-    branches:
-      - main
 
 jobs:
-  build-and-deploy:
+  terraform:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
+      - name: Checkout code
         uses: actions/checkout@v2
-      - name: Install Terraform
+
+      - name: Set up Terraform
         uses: hashicorp/setup-terraform@v1
         with:
-          terraform_version: "2.4.0"
-      - name: Terraform Format
-        run: terraform fmt -check -diff
-      - name: Terraform Init
+          terraform_version: '1.0.2'
+
+      - name: Initialize Terraform
         run: terraform init
-      - name: Terraform Validate
+
+      - name: Validate Terraform configuration
         run: terraform validate
-      - name: Terraform Plan
+
+      - name: Plan Terraform changes
         run: terraform plan
-      - name: Terraform Apply
-        run: terraform apply -auto-approve
+
+      - name: Apply Terraform changes
+        run: terraform apply --auto-approve
