@@ -1,4 +1,4 @@
-name: Terraform Workflow Demo
+name: Terraform Workflow
 
 on:
   push:
@@ -9,15 +9,16 @@ jobs:
   terraform:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-      - name: Install Terraform
-        uses: hashicorp/setup-terraform@v1
-        with:
-          terraform_version: "1.0.4"
-      - name: Terraform Init
-        run: terraform init
-      - name: Terraform Plan
-        run: terraform plan
-      - name: Terraform Apply
-        run: terraform apply --auto-approve
+    - uses: actions/checkout@v2
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v1
+      with:
+        terraform_version: '1.0.4'
+    - name: Terraform Init
+      run: terraform init
+    - name: Terraform Plan
+      run: terraform plan
+    - name: Terraform Apply
+      run: terraform apply --auto-approve
+    - name: Terraform Destroy
+      run: terraform destroy --auto-approve
